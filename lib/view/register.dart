@@ -45,6 +45,7 @@ class _RegisterState extends State<Register> {
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
                     hintText: 'Password',
                   ),
                   onChanged: (value) => password = value,

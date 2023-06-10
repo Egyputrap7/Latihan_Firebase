@@ -36,12 +36,14 @@ class _RegisterState extends State<Register> {
                   onChanged: (value) => name = value,
                 ),
                 TextFormField(
+                  
                   decoration: const InputDecoration(
                     hintText: 'Email',
                   ),
                   onChanged: (value) => email = value,
                 ),
                 TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     hintText: 'Password',
                   ),

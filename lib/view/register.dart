@@ -38,6 +38,7 @@ class _RegisterState extends State<Register> {
                 TextFormField(
                   
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.email),
                     hintText: 'Email',
                   ),
                   onChanged: (value) => email = value,

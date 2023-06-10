@@ -23,14 +23,18 @@ class _ContactState extends State<Contact> {
   @override
   void initState() {
     super.initState();
-    cc.getContact();
+    cc.getContact();  
+    
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [IconButton(onPressed: (){
+          
 
           FirebaseAuth.instance.signOut();
           Navigator.of(context).pushReplacement(
@@ -135,4 +139,5 @@ class _ContactState extends State<Contact> {
       ),
     );
   }
+  
 }

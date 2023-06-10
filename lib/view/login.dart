@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:latihan_firebase/controller/auth_controller.dart';
 import 'package:latihan_firebase/view/register.dart';
 

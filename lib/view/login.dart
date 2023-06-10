@@ -18,6 +18,9 @@ class _LoginPageState extends State<LoginPage> {
   final formkey = GlobalKey<FormState>();
   final authctrl = AuthController();
 
+    bool passTogle = true;
+
+
   String? email;
   String? password;
   @override
@@ -48,9 +51,12 @@ class _LoginPageState extends State<LoginPage> {
                   onChanged: (value) => email = value,
                 ),
                 TextFormField(
+                  obscureText: true,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.lock),
+                    
                     hintText: 'Password',
+                    
                   ),
                   onChanged: (value) => password = value,
                 ),
@@ -133,5 +139,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
           )),
     ));
+       
   }
+
 }

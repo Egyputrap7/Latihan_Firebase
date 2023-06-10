@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "305963089183",
+    "project_id": "paml-998d4",
+    "storage_bucket": "paml-998d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305963089183:android:6be32bd86cff0aee53042a",
+        "android_client_info": {
+          "package_name": "com.example.latihan_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc7sP_P95LA1ph6p1PawpoSuuEaa10x4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

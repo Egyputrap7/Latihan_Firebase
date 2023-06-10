@@ -31,6 +31,7 @@ class _RegisterState extends State<Register> {
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.people),
                     hintText: 'Name',
                   ),
                   onChanged: (value) => name = value,

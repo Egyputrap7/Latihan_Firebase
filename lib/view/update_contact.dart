@@ -6,6 +6,8 @@ import '../model/contact_model.dart';
 import 'contact.dart';
 
 class UpdateContact extends StatefulWidget {
+
+    // Konstruktor untuk widget UpdateContact dengan parameter yang diperlukan
   const UpdateContact(
       {super.key,
       this.id,
@@ -14,6 +16,7 @@ class UpdateContact extends StatefulWidget {
       this.beforeemail,
       this.beforeaddress});
 
+  // Variabel untuk menyimpan data yang akan diperbarui
   final String? id;
   final String? beforenama;
   final String? beforephone;
@@ -25,7 +28,11 @@ class UpdateContact extends StatefulWidget {
 }
 
 class _UpdateContactState extends State<UpdateContact> {
+
+  // Membuat instance dari ContactController
   var contatcController = ContactController();
+
+  // Membuat GlobalKey untuk form
   final formkey = GlobalKey<FormState>();
 
   String? name;
@@ -78,16 +85,23 @@ class _UpdateContactState extends State<UpdateContact> {
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
                         formkey.currentState!.save();
+
+                        // Membuat objek ContactModel dengan data yang diperbarui
                         ContactModel cm = ContactModel(
                             id: widget.id!,
                             name: name!,
                             phone: phone!,
                             email: email!,
                             address: address!);
+
+                            // Memanggil metode updateContact dari ContactController
                         contatcController.updateContact(cm);
+
+                        // Menampilkan pesan sukses
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Contact Updated')));
 
+                        // Navigasi ke halaman Contact setelah pembaruan berhasil
                         Navigator.push(
                             context,
                             MaterialPageRoute(

@@ -11,6 +11,8 @@ import 'package:latihan_firebase/view/update_contact.dart';
 import '../controller/auth_controller.dart';
 
 class Contact extends StatefulWidget {
+
+    // Konstruktor untuk widget Contact
   const Contact({super.key});
 
   @override
@@ -18,11 +20,17 @@ class Contact extends StatefulWidget {
 }
 
 class _ContactState extends State<Contact> {
+
+  // Membuat instance dari ContactController
   var cc = ContactController();
+
+  // Membuat instance dari AuthController
   final authctrl = AuthController();
   @override
   void initState() {
     super.initState();
+
+    // Mengambil daftar kontak saat widget diinisialisasi
     cc.getContact();  
     
   }
@@ -33,10 +41,13 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // Tombol logout di pojok kanan atas
         actions: [IconButton(onPressed: (){
-          
 
+          // Logout pengguna saat tombol logout ditekan
           FirebaseAuth.instance.signOut();
+
+          // Navigasi kembali ke halaman login
           Navigator.of(context).pushReplacement(
   MaterialPageRoute(builder: (context) => LoginPage()),
 );
@@ -57,13 +68,14 @@ class _ContactState extends State<Contact> {
                 stream: cc.stream,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
+                    // Menampilkan indikator loading jika data belum tersedia
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
 
                   final List<DocumentSnapshot> data = snapshot.data!;
-
+                  // Membangun daftar kontak menggunakan ListView.builder
                    return ListView.builder(
                     itemCount: data.length,
                     itemBuilder: (context, index) {
@@ -71,6 +83,7 @@ class _ContactState extends State<Contact> {
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onLongPress: () {
+                            // Navigasi ke halaman UpdateContact ketika kontak ditekan lama
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -104,15 +117,21 @@ class _ContactState extends State<Contact> {
                               subtitle: Text(data[index]['phone']),
                               trailing: IconButton(
                                 icon: Icon(Icons.delete),
+
+                                // Menghapus kontak ketika tombol hapus ditekan
                                 onPressed: () {
                                   cc
                                       .deleteContact(
                                           data[index]['id'].toString())
                                       .then((value) {
                                     setState(() {
+
+                                      // Memperbarui daftar kontak setelah penghapusan
                                       cc.getContact();
                                     });
                                   });
+
+                                  // Menampilkan pesan sukses
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                           content: Text('Contact Deleted')));

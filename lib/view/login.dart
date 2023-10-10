@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:latihan_firebase/controller/auth_controller.dart';
 import 'package:latihan_firebase/view/register.dart';
 
@@ -14,12 +13,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+    // Membuat GlobalKey untuk form
   final formkey = GlobalKey<FormState>();
+
+    // Membuat instance dari AuthController
   final authctrl = AuthController();
 
-    bool passTogle = true;
-
-
+  // Variabel untuk menyimpan email dan password
   String? email;
   String? password;
   @override
@@ -42,6 +43,8 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black))),
                 ),
+
+                // Input field untuk email
                 TextFormField(
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
@@ -49,6 +52,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   onChanged: (value) => email = value,
                 ),
+
+                // Input field untuk password
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -62,17 +67,21 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 20,
                 ),
+
+                // Tombol "Login"
                 ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () async {
                     if (formkey.currentState!.validate()) {
+
+                      // Melakukan login menggunakan authctrl.signInWithEmailAndPassword
                       UserModel? Signing =
                           await authctrl.signInWithEmailAndPassword(
                         email!,
                         password!
                           );                                        
                       if (Signing != null) {
-                        // Registration successful
+                        // Login berhasil, tampilkan pesan sukses
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -88,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                                      return Contact();
                                     }));
                                     print(Signing.name);
-                                    // Navigate to the next screen or perform any desired action
+                                    // Navigasi ke halaman berikutnya atau lakukan tindakan yang diinginkan
                                   },
                                   child: const Text('OK'),
                                 ),
@@ -97,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         );
                       } else {
-                        // Registration failed
+                        // Login gagal, tampilkan pesan kesalahan
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -120,6 +129,8 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                 ),
+
+                // Tombol untuk navigasi ke halaman pendaftaran (Register)
                 TextButton(onPressed: (){
                    {
                           Navigator.push(

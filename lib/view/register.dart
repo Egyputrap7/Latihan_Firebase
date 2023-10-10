@@ -4,6 +4,8 @@ import 'package:latihan_firebase/view/contact.dart';
 import '../controller/auth_controller.dart';
 import '../model/user_model.dart';
 class Register extends StatefulWidget {
+
+    // Konstruktor untuk widget Register
   const Register({super.key});
 
   @override
@@ -11,8 +13,14 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+
+    // Membuat GlobalKey untuk form
   final formkey = GlobalKey<FormState>();
+
+    // Membuat instance dari AuthController
   final authCtr = AuthController();
+
+    // Variabel untuk menyimpan nama, email, dan password
   String? name;
   String? email;
   String? password;
@@ -29,6 +37,7 @@ class _RegisterState extends State<Register> {
             key: formkey,
             child: Column(
               children: [
+              // Input field untuk nama
                 TextFormField(
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.people),
@@ -36,6 +45,8 @@ class _RegisterState extends State<Register> {
                   ),
                   onChanged: (value) => name = value,
                 ),
+
+                // Input field untuk Email
                 TextFormField(
                   
                   decoration: const InputDecoration(
@@ -44,6 +55,8 @@ class _RegisterState extends State<Register> {
                   ),
                   onChanged: (value) => email = value,
                 ),
+
+                // Input field untuk password
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -55,10 +68,14 @@ class _RegisterState extends State<Register> {
                 const SizedBox(
                   height: 20,
                 ),
+
+                // Tombol "Register"
                 ElevatedButton(
                   child: const Text('Register'),
                   onPressed: () async {
                     if (formkey.currentState!.validate()) {
+
+                      // Melakukan registrasi menggunakan authCtr.registerWithEmailAndPassword
                       UserModel? registeredUser =
                           await authCtr.registerWithEmailAndPassword(
                         email!,
@@ -66,7 +83,7 @@ class _RegisterState extends State<Register> {
                         name!,
                       );
                       if (registeredUser != null) {
-                        // Registration successful
+                        // Registrasi berhasil, tampilkan pesan sukses
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
@@ -82,7 +99,7 @@ class _RegisterState extends State<Register> {
                                      return Contact();
                                     }));
                                     print(registeredUser.name);
-                                    // Navigate to the next screen or perform any desired action
+                                    // Navigasi ke halaman berikutnya atau lakukan tindakan yang diinginkan
                                   },
                                   child: const Text('OK'),
                                 ),
@@ -91,7 +108,7 @@ class _RegisterState extends State<Register> {
                           },
                         );
                       } else {
-                        // Registration failed
+                        // Registrasi gagal, tampilkan pesan kesalahan
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:latihan_firebase/view/contact.dart';
+import 'package:latihan_firebase/view/currrent_location.dart';
 import 'package:latihan_firebase/view/login.dart';
 import 'package:latihan_firebase/view/register.dart';
 
@@ -18,6 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      
+      // Menentukan halaman awal aplikasi
       home:LoginPage(),
     );
       
